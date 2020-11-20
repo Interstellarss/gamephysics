@@ -1,6 +1,6 @@
 ﻿  Generating code
-  2 of 1246 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  30 of 1260 functions ( 2.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+    19 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SimulationsRunner_2017.vcxproj -> D:\gamephysic\gamephysicstemplate\Win32\Release\SimulationsRunner_2017.exe

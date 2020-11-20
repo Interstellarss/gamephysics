@@ -2,7 +2,24 @@
 #include "MassSpringSystemSimulator.h"
 
 float distance(Vec3 first, Vec3 sec);
-void euler(float timestep, float stiffness, float mass);
+int euler(float timestep, float stiffness, float mass);
+
+struct MassPoint {
+	Vec3 position;
+	Vec3 Velocity;
+	bool isFixed;
+	Vec3 Acc;
+};
+
+struct Spring {
+	int masspoint1;
+	int masspoint2;
+	float initialLength;
+};
+
+vector<MassPoint> points;
+
+vector<Spring> springs;
 
 //constructor
 MassSpringSystemSimulator::MassSpringSystemSimulator() {
@@ -34,7 +51,7 @@ void MassSpringSystemSimulator::initUI(DrawingUtilitiesClass* DUC)
 
 void MassSpringSystemSimulator::notifyCaseChanged(int testCase)
 {
-	m_iTestCase = testCase;
+	this->m_iIntegrator = testCase;
 	switch (m_iTestCase)
 	{
 	case 0:
@@ -80,7 +97,7 @@ void MassSpringSystemSimulator::externalForcesCalculations(float timeElapsed)
 void MassSpringSystemSimulator::simulateTimestep(float timeStep)
 {
 	// update current setup for each frame
-	switch (m_iTestCase)
+	switch (this->m_iIntegrator)
 	{// handling different cases
 	//EULER
 	case 0:
@@ -95,19 +112,27 @@ void MassSpringSystemSimulator::simulateTimestep(float timeStep)
 	case 2:
 		//todo
 		break;
-	default:
-		break;
+	//default:
+	//	break;
 	}
 }
 
 void MassSpringSystemSimulator::drawFrame(ID3D11DeviceContext* pd3dImmediateContext)
 {
-	switch (m_iTestCase)
+	
+	switch (this->m_iIntegrator)
 	{
-	case 0: break;
-	case 1: break;
-	case 2: break;
+	case 0: 
+		for (int i = 0; i < points.size(); i++) {
+			DUC->drawSphere(points[i].position, Vec3(0.5, 0.5, 0.5));
+		}
+		break;
+	case 1: 
+		break;
+	case 2: 
+		break;
 	}
+	
 }
 
 void MassSpringSystemSimulator::onClick(int x, int y)
@@ -127,22 +152,7 @@ void MassSpringSystemSimulator::onMouse(int x, int y)
 
 
 //simulation
-struct MassPoint {
-	Vec3 position;
-	Vec3 Velocity;
-	bool isFixed;
-	Vec3 Acc;
-};
 
-struct Spring {
-	int masspoint1;
-	int masspoint2;
-	float initialLength;
-};
-
-vector<MassPoint> points;
-
-vector<Spring> springs;
 
 void MassSpringSystemSimulator::setMass(float mass){
 	this->m_fMass = mass;
@@ -202,9 +212,9 @@ void MassSpringSystemSimulator::applyExternalForce(Vec3 force) {
 }
 
 
-void euler(float timestep, float stiffness, float mass) {
+int euler(float timestep, float stiffness, float mass) {
 	//first calculate the acceleration
-	for (Spring spr : springs) {
+	for (Spring &spr : springs) {
 		MassPoint first = points[spr.masspoint1];
 		MassPoint sec = points[spr.masspoint2];
 		float dis = distance(first.position, sec.position);
@@ -221,6 +231,7 @@ void euler(float timestep, float stiffness, float mass) {
 		}
 
 	}
+	return 0;
 }
 
 float distance(Vec3 first, Vec3 sec) {
