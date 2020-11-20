@@ -42,6 +42,8 @@ public:
 		m_iIntegrator = integrator;
 	}
 
+
+
 private:
 	// Data Attributes
 	float m_fMass;
