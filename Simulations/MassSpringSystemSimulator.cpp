@@ -241,10 +241,10 @@ void MassSpringSystemSimulator::euler(float timestep, float stiffness, float mas
 	//first calculate the acceleration
 	calculateAcc(stiffness, mass, this->points);
 
-	for (MassPoint m : this->points) {
-		if (!m.isFixed) {
-			m.position = m.position + timestep * m.Velocity;
-		    m.Velocity = m.Velocity + timestep * m.Acc;
+	for (int i = 0; i < points.size(); i++) {
+		if (!points[i].isFixed) {
+			points[i].position += timestep * points[i].Velocity;
+			points[i].Velocity += timestep * points[i].Acc;
 		}
 	}
     //return 0;
@@ -292,6 +292,9 @@ void MassSpringSystemSimulator::midpoint(float timestep, float stiffness, float 
 	calculateAcc(stiffness, mass, midPoints);
 
 	for (int i = 0; i < points.size(); i++) {
+		if (points[i].isFixed) {
+			continue;
+		}
 		points[i].position += timestep * midPoints[i].Velocity;
 		points[i].Velocity += timestep * midPoints[i].Acc;
 	}
