@@ -1,0 +1,2 @@
+D:\gamephysic\gamephysicstemplate\SimulatorTester\Win32\Debug\SimulatorTester_2017.vcxprojAssemblyReference.cache
+D:\gamephysic\gamephysicstemplate\SimulatorTester\Win32\Debug\SimulatorTester_2017.vcxproj.CopyComplete

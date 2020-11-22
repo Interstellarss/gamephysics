@@ -1,0 +1,3 @@
+D:\gamephysic\gamephysicstemplate\Win32\Debug\effect.fxo
+D:\gamephysic\gamephysicstemplate\Win32\Debug\Simulations.pdb
+D:\gamephysic\gamephysicstemplate\Simulations\Win32\Debug\Simulations.pdb

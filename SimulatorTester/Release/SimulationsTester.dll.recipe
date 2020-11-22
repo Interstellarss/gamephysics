@@ -1,7 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <ProjectOutputs>D:\gamephysic\gamephysicstemplate\Release\SimulationsTester.dll</ProjectOutputs>
-  <ContentFiles></ContentFiles>
-  <SatelliteDlls></SatelliteDlls>
-  <NonRecipeFileRefs>D:\gamephysic\gamephysicstemplate\DirectXTK\MakeSpriteFont\MakeSpriteFont.csproj</NonRecipeFileRefs>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\gamephysic\gamephysicstemplate\AntTweakBar\lib\AntTweakBar.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\gamephysic\gamephysicstemplate\Release\SimulationsTester.dll</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\gamephysic\gamephysicstemplate\Win32\Release\effect.fxo</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs>
+    <NonRecipeFileRef>
+      <FullPath>D:\gamephysic\gamephysicstemplate\DirectXTK\MakeSpriteFont\MakeSpriteFont.csproj</FullPath>
+    </NonRecipeFileRef>
+  </NonRecipeFileRefs>
 </Project>

@@ -8,9 +8,28 @@
 #define MIDPOINT 2
 // Do Not Change
 
+struct MassPoint {
+	Vec3 position;
+	Vec3 Velocity;
+	bool isFixed;
+	Vec3 Acc;
+};
+
+struct Spring {
+	int masspoint1;
+	int masspoint2;
+	float initialLength;
+};
 
 class MassSpringSystemSimulator:public Simulator{
+
+
 public:
+
+	vector<MassPoint> points;
+
+	vector<Spring> springs;
+
 	// Construtors
 	MassSpringSystemSimulator();
 	
@@ -43,6 +62,14 @@ public:
 	}
 
 
+	//simulation function
+	void euler(float timestep, float stiffness, float mass);
+
+	int calculateAcc(float stiffness, float mass, vector<MassPoint> &points);
+
+	void midpoint(float timestep, float stiffness, float mass);
+
+	void leapFrog(float timestep, float stiffness, float mass);
 
 private:
 	// Data Attributes
