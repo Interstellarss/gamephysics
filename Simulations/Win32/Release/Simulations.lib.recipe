@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <ProjectOutputs></ProjectOutputs>
-  <ContentFiles>D:\gamephysic\gamephysicstemplate\Win32\Release\effect.fxo</ContentFiles>
-  <SatelliteDlls></SatelliteDlls>
-  <NonRecipeFileRefs></NonRecipeFileRefs>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\gamephysic\gamephysicstemplate\AntTweakBar\lib\AntTweakBar.dll</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\gamephysic\gamephysicstemplate\Win32\Release\effect.fxo</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
 </Project>

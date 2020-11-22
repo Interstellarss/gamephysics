@@ -1,9 +1,6 @@
 
 #include "MassSpringSystemSimulator.h"
 
-float distance(Vec3 first, Vec3 sec);
-int euler(float timestep, float stiffness, float mass);
-
 struct MassPoint {
 	Vec3 position;
 	Vec3 Velocity;
@@ -16,6 +13,13 @@ struct Spring {
 	int masspoint2;
 	float initialLength;
 };
+
+double distance(Vec3 first, Vec3 sec);
+int euler(float timestep, float stiffness, float mass);
+int calculateAcc(float stiffness, float mass, vector<MassPoint> points);
+int midpoint(float timestep, float stiffness, float mass);
+
+
 
 vector<MassPoint> points;
 
@@ -104,16 +108,17 @@ void MassSpringSystemSimulator::simulateTimestep(float timeStep)
         //todo
 		euler(timeStep, this->m_fStiffness, this->m_fMass);
 		break;
-		//LEAPFROG
+	//LEAPFROG
 	case 1:
 		//todo
 		break;
-		//MIDPOINT
+	//MIDPOINT
 	case 2:
 		//todo
+		midpoint(timeStep, this->m_fStiffness, this->m_fMass);
 		break;
-	//default:
-	//	break;
+	default:
+		break;
 	}
 }
 
@@ -214,15 +219,7 @@ void MassSpringSystemSimulator::applyExternalForce(Vec3 force) {
 
 int euler(float timestep, float stiffness, float mass) {
 	//first calculate the acceleration
-	for (Spring &spr : springs) {
-		MassPoint first = points[spr.masspoint1];
-		MassPoint sec = points[spr.masspoint2];
-		float dis = distance(first.position, sec.position);
-		//Vec3 direc1 = (sec.position - first.position) / dis;
-		//Vec3 direc2 = (-1) * direc1;
-		first.Acc = (dis - spr.initialLength) * stiffness / mass;
-		sec.Acc = first.Acc * (-1);
-	}
+	calculateAcc(stiffness, mass, points);
 
 	for (MassPoint m : points) {
 		if (!m.isFixed) {
@@ -234,6 +231,38 @@ int euler(float timestep, float stiffness, float mass) {
 	return 0;
 }
 
-float distance(Vec3 first, Vec3 sec) {
-	return sqrtf((sec.x - first.x) * (sec.x - first.x) + (sec.y - first.y) * (sec.y - first.y) + (sec.z - first.z) * (sec.z - first.z));
+//could also return float or double, may cause the difference
+double distance(Vec3 first, Vec3 sec) {
+	return sqrt((sec.x - first.x) * (sec.x - first.x) + (sec.y - first.y) * (sec.y - first.y) + (sec.z - first.z) * (sec.z - first.z));
+}
+
+int calculateAcc(float stiffness, float mass, vector<MassPoint> points) {
+	for (Spring& spr : springs) {
+		MassPoint first = points[spr.masspoint1];
+		MassPoint sec = points[spr.masspoint2];
+		float dis = distance(first.position, sec.position);
+		//Vec3 direc1 = (sec.position - first.position) / dis;
+		//Vec3 direc2 = (-1) * direc1;
+		first.Acc = (dis - spr.initialLength) * stiffness / mass;
+		sec.Acc = first.Acc * (-1);
+	}
+	return 0;
+}
+
+int midpoint(float timestep, float stiffness, float mass) {
+	vector<MassPoint> midPoints;
+	for (int i = 0; i < points.size(); i++) {
+		MassPoint tmp;
+		tmp.position = points[i].position + 0.5 * timestep * points[i].Velocity;
+		tmp.Velocity = points[i].Velocity + 0.5 * timestep * points[i].Acc;
+		midPoints[i] = tmp;
+	}
+	calculateAcc(stiffness, mass, midPoints);
+
+	for (int i = 0; i < points.size(); i++) {
+		points[i].position += timestep * midPoints[i].Velocity;
+		points[i].Velocity += timestep * midPoints[i].Acc;
+	}
+
+	return 0;
 }

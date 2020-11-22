@@ -4,14 +4,12 @@
   MassSpringSystemSimulator.cpp
 D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(11,1): warning C4005: 'NOMINMAX': macro redefinition
 D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp : message : see previous definition of 'NOMINMAX'
-D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(126,21): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(180,38): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(180,68): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(238,93): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
-          with
-          [
-              Scalar=GamePhysics::Real
-          ]
+D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(131,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(185,38): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(185,68): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(243,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(254,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(262,20): warning C4018: '<': signed/unsigned mismatch
 D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,36): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
           with
           [
