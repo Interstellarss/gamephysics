@@ -65,7 +65,7 @@ public:
 	//simulation function
 	void euler(float timestep, float stiffness, float mass);
 
-	int calculateAcc(float stiffness, float mass, vector<MassPoint> &points);
+	void calculateAcc(float stiffness, float mass, vector<MassPoint> &points);
 
 	void midpoint(float timestep, float stiffness, float mass);
 

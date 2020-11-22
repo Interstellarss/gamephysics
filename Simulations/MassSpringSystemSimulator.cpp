@@ -59,7 +59,7 @@ void MassSpringSystemSimulator::initUI(DrawingUtilitiesClass* DUC)
 void MassSpringSystemSimulator::notifyCaseChanged(int testCase)
 {
 	this->m_iIntegrator = testCase;
-	switch (m_iTestCase)
+	switch (testCase)
 	{
 	case 0:
 		cout << "Euler !\n";
@@ -104,7 +104,7 @@ void MassSpringSystemSimulator::externalForcesCalculations(float timeElapsed)
 void MassSpringSystemSimulator::simulateTimestep(float timeStep)
 {
 	// update current setup for each frame
-	int testcase2 = m_iTestCase;
+	//int testcase2 = m_iTestCase;
 	int testcase = this->m_iIntegrator;
 	//determine which case tobe simulated
 	/*
@@ -149,12 +149,18 @@ void MassSpringSystemSimulator::drawFrame(ID3D11DeviceContext* pd3dImmediateCont
 	{
 	case 0: 
 		for (int i = 0; i < points.size(); i++) {
-			DUC->drawSphere(points[i].position, Vec3(0.5, 0.5, 0.5));
+			DUC->drawSphere(points[i].position, Vec3(0.1, 0.1, 0.1));
 		}
 		break;
 	case 1: 
+		for (int i = 0; i < points.size(); i++) {
+			DUC->drawSphere(points[i].position, Vec3(0.1, 0.1, 0.1));
+		}
 		break;
 	case 2: 
+		for (int i = 0; i < points.size(); i++) {
+			DUC->drawSphere(points[i].position, Vec3(0.1, 0.1, 0.1));
+		}
 		break;
 	}
 	
@@ -254,15 +260,12 @@ void MassSpringSystemSimulator::euler(float timestep, float stiffness, float mas
 float distance(Vec3 first, Vec3 sec) {
 	return sqrtf((sec.x - first.x) * (sec.x - first.x) + (sec.y - first.y) * (sec.y - first.y) + (sec.z - first.z) * (sec.z - first.z));
 }
-
-int MassSpringSystemSimulator::calculateAcc(float stiffness, float mass, vector<MassPoint> &points) {
+//calculate the accelaration for the points at its positions
+void MassSpringSystemSimulator::calculateAcc(float stiffness, float mass, vector<MassPoint> &points) {
 	for (Spring& spr : springs) {
-		//MassPoint first = points[spr.masspoint1];
-		//MassPoint sec = points[spr.masspoint2];
+
 		float dis = distance(points[spr.masspoint1].position, points[spr.masspoint2].position);
-		//Vec3 direc1 = (sec.position - first.position) / dis;
-		//Vec3 direc2 = (-1) * direc1;
-		//nead to make it to Vec3
+
 
 		Vec3 tmp = Vec3(points[spr.masspoint2].position.x - points[spr.masspoint1].position.x, points[spr.masspoint2].position.y - points[spr.masspoint1].position.y, points[spr.masspoint2].position.z - points[spr.masspoint1].position.z);
 
@@ -270,13 +273,9 @@ int MassSpringSystemSimulator::calculateAcc(float stiffness, float mass, vector<
 
 		//points[spr.masspoint1].Acc = Vec3(((dis - spr.initialLength) * stiffness / mass) * (points[spr.masspoint2].position.operator-=(points[spr.masspoint1].position)) / dis);
 		points[spr.masspoint1].Acc = Vec3(tmp);
-		//points[spr.masspoint1].Acc.x = tmp.x;
-		//points[spr.masspoint1].Acc.y = tmp.y;
-		//points[spr.masspoint1].Acc.z = tmp.z;
-
 		points[spr.masspoint2].Acc = points[spr.masspoint1].Acc.operator-();
 	}
-	return 0;
+	//return 0;
 }
 
 void MassSpringSystemSimulator::midpoint(float timestep, float stiffness, float mass) {
@@ -303,10 +302,10 @@ void MassSpringSystemSimulator::midpoint(float timestep, float stiffness, float 
 }
 
 void MassSpringSystemSimulator::leapFrog(float timestep, float stiffness, float mass) {
-	calculateAcc(stiffness, mass, points);
-	for (MassPoint p : points) {
-		p.Velocity += timestep * p.Acc;
-		p.position += timestep * p.Velocity;
+	calculateAcc(stiffness, mass, this->points);
+	for (int i = 0; i < points.size(); i++) {
+		points[i].Velocity += timestep * points[i].Acc;
+		points[i].position += timestep * points[i].Velocity;
 	}
 
 	//return 0;

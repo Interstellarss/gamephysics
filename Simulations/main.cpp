@@ -15,6 +15,7 @@
 #include "util/util.h"
 #include "util/FFmpeg.h"
 
+
 using namespace DirectX;
 using namespace GamePhysics;
 
@@ -362,7 +363,19 @@ int main(int argc, char* argv[])
 	g_pSimulator= new TemplateSimulator();
 #endif
 #ifdef MASS_SPRING_SYSTEM
-	g_pSimulator= new MassSpringSystemSimulator();
+	MassSpringSystemSimulator tmp;
+	tmp.setMass(10.0f);
+	tmp.setDampingFactor(0.0f);
+	tmp.setStiffness(5.0f);
+	int p0 = tmp.addMassPoint(Vec3(0.0, 0.0f, 0), Vec3(-1.0, 0.0f, 0), false);
+	int p1 = tmp.addMassPoint(Vec3(0.0, 2.0f, 0), Vec3(1.0, 0.0f, 0), false);
+	//g_pSimulator = new MassSpringSystemSimulator();
+	tmp.addSpring(p0, p1, 1.0);
+
+	g_pSimulator = &tmp;
+	
+	//g_pSimulator
+	
 #endif
 #ifdef RIGID_BODY_SYSTEM
 	//g_pSimulator= new RigidBodySystemSimulator();

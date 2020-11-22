@@ -1,7 +1,4 @@
-﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
-  
-  compilation object save succeeded; see D:\gamephysic\gamephysicstemplate\Win32\Debug\effect.fxo
-  MassSpringSystemSimulator.cpp
+﻿  MassSpringSystemSimulator.cpp
 D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(11,1): warning C4005: 'NOMINMAX': macro redefinition
 D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp : message : see previous definition of 'NOMINMAX'
 D:\gamephysic\gamephysicstemplate\Simulations\MassSpringSystemSimulator.cpp(151,21): warning C4018: '<': signed/unsigned mismatch
