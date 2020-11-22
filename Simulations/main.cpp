@@ -369,9 +369,11 @@ int main(int argc, char* argv[])
 	tmp.setStiffness(5.0f);
 	int p0 = tmp.addMassPoint(Vec3(0.0, 0.0f, 0), Vec3(-1.0, 0.0f, 0), false);
 	int p1 = tmp.addMassPoint(Vec3(0.0, 2.0f, 0), Vec3(1.0, 0.0f, 0), false);
+	int p2 = tmp.addMassPoint(Vec3(0.0, 3.0f, 0), Vec3(1.0, 0.0f, 0), false);
+
 	//g_pSimulator = new MassSpringSystemSimulator();
 	tmp.addSpring(p0, p1, 1.0);
-
+	tmp.addSpring(p1, p2, 1.5);
 	g_pSimulator = &tmp;
 	
 	//g_pSimulator
