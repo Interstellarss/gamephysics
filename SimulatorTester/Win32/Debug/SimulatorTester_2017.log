@@ -1,1 +1,114 @@
-﻿  SimulatorTester_2017.vcxproj -> D:\gamephysic\gamephysicstemplate\Win32\Debug\SimulationsTester.dll
+﻿  PublicRigidBodiesTests.cpp
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(11,1): warning C4005: 'NOMINMAX': macro redefinition
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp : message : see previous definition of 'NOMINMAX'
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(13,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(15,71): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(22,1): warning C4316: 'RigidBodySystemSimulator': object allocated on the heap may not be aligned 16
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(24,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(54,1): warning C4316: 'RigidBodySystemSimulator': object allocated on the heap may not be aligned 16
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(58,1): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(76,1): warning C4316: 'RigidBodySystemSimulator': object allocated on the heap may not be aligned 16
+D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(79,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,36): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(203): message : while compiling class template member function 'DirectX::XMVECTOR GamePhysics::vector3Dim<GamePhysics::Real>::toDirectXVector(void) const'
+D:\gamephysic\gamephysicstemplate\Simulations\DrawingUtilitiesClass.h(285): message : see reference to function template instantiation 'DirectX::XMVECTOR GamePhysics::vector3Dim<GamePhysics::Real>::toDirectXVector(void) const' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(859): message : see reference to class template instantiation 'GamePhysics::vector3Dim<GamePhysics::Real>' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,34): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,32): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(773): message : while compiling class template member function 'DirectX::XMMATRIX GamePhysics::matrix4x4<double>::toDirectXMatrix(void)'
+D:\gamephysic\gamephysicstemplate\Simulations\DrawingUtilitiesClass.h(380): message : see reference to function template instantiation 'DirectX::XMMATRIX GamePhysics::matrix4x4<double>::toDirectXMatrix(void)' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\DrawingUtilitiesClass.h(379): message : see reference to class template instantiation 'GamePhysics::matrix4x4<double>' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,25): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,25): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,25): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,97): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+     Creating library D:\gamephysic\gamephysicstemplate\Win32\Debug\SimulationsTester.lib and object D:\gamephysic\gamephysicstemplate\Win32\Debug\SimulationsTester.exp
+  SimulatorTester_2017.vcxproj -> D:\gamephysic\gamephysicstemplate\Win32\Debug\SimulationsTester.dll

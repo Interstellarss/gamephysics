@@ -22,8 +22,8 @@ using namespace GamePhysics;
 //#define ADAPTIVESTEP
 
 //#define TEMPLATE_DEMO
-#define MASS_SPRING_SYSTEM
-//#define RIGID_BODY_SYSTEM
+//#define MASS_SPRING_SYSTEM
+#define RIGID_BODY_SYSTEM
 //#define SPH_SYSTEM
 
 #ifdef TEMPLATE_DEMO
@@ -33,7 +33,7 @@ using namespace GamePhysics;
 #include "MassSpringSystemSimulator.h"
 #endif
 #ifdef RIGID_BODY_SYSTEM
-//#include "RigidBodySystemSimulator.h"
+#include "RigidBodySystemSimulator.h"
 #endif
 #ifdef SPH_SYSTEM
 //#include "SPHSystemSimulator.h"
@@ -380,7 +380,17 @@ int main(int argc, char* argv[])
 	
 #endif
 #ifdef RIGID_BODY_SYSTEM
-	//g_pSimulator= new RigidBodySystemSimulator();
+	RigidBodySystemSimulator tmp;
+
+	tmp.addRigidBody(Vec3(0, 0, 0), 0.5f, 5);
+
+	tmp.setOrientationOf(0, GamePhysics::Quat(Vec3(0.0f, 0.0f, 1.0f), (float)(M_PI)*0.25f));
+
+	tmp.setVelocityOf(0, Vec3(0.0f, -0.1f, 0.05f));
+
+	 //g_pSimulator = new RigidBodySystemSimulator();
+	g_pSimulator = &tmp;
+
 #endif
 #ifdef SPH_SYSTEM
 	//g_pSimulator= new SPHSystemSimulator();
