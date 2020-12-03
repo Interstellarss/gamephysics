@@ -5,6 +5,8 @@
 //todo: complete this header
 #include "RigidBodySystem.h"
 
+#include "collisionDetect.h"
+
 #include "util/quaternion.h"
 #include <DirectXMath.h>
 
@@ -35,6 +37,8 @@ struct RigidBody {
 	XMMATRIX tensor;
 
 	Vec3 size;
+
+	Vec3 acc;
 
 	Vec3 vTorque;  //total torque on body
 };
@@ -72,8 +76,11 @@ public:
 	void setOrientationOf(int i,Quat orientation);
 	void setVelocityOf(int i, Vec3 velocity);
 
+	void drawRigid();
 
 	//for simulation
+	void updateLinear(float timestep);
+
 	void precomputing();
 
 	void updateOrientationAndMomentum(float timestep);
@@ -101,6 +108,8 @@ private:
 	vector<RigidBody> m_pRigidBodySystem;
 
 	int m_iIntegrator;
+
+
 
 	// UI Attributes
 	Point2D m_mouse;

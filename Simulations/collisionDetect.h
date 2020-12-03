@@ -1,6 +1,8 @@
 ﻿// header file:
 #include <DirectXMath.h>
 #include <Vector>
+#include "util/vectorbase.h"
+#include "util/matrixbase.h"
 using namespace DirectX;
 
 // the return structure, with these values, you should be able to calculate the impulse
@@ -408,8 +410,9 @@ inline void testCheckCollision(int caseid){
 
 		// check for collision
 		CollisionInfo simpletest = checkCollisionSAT(AM, BM);// should find out a collision here
-		if (!simpletest.isValid)
+		if (!simpletest.isValid) {
 			std::printf("No Collision\n");
+		}
 		else {
 			std::printf("collision detected at normal: %f, %f, %f\n", simpletest.normalWorld.x, simpletest.normalWorld.y, simpletest.normalWorld.z);
 			std::printf("collision point : %f, %f, %f\n", (simpletest.collisionPointWorld).x, (simpletest.collisionPointWorld).y, simpletest.collisionPointWorld.z);
@@ -432,9 +435,9 @@ inline void testCheckCollision(int caseid){
 		// check for collision
 		CollisionInfo simpletest = checkCollisionSAT(AM, BM);// should find out a collision here
 
-		if (!simpletest.isValid)
+		if(!simpletest.isValid) {
 			std::printf("No Collision\n");
-		else {
+		}else {
 			std::printf("collision detected at normal: %f, %f, %f\n", simpletest.normalWorld.x, simpletest.normalWorld.y, simpletest.normalWorld.z);
 			std::printf("collision point : %f, %f, %f\n", (simpletest.collisionPointWorld).x, (simpletest.collisionPointWorld).y, simpletest.collisionPointWorld.z);
 		}
@@ -464,9 +467,9 @@ inline void testCheckCollision(int caseid){
 		// check for collision
 		CollisionInfo simpletest = checkCollisionSAT(AM, BM);// should find out a collision here
 
-		if (!simpletest.isValid)
+		if (!simpletest.isValid) {
 			std::printf("No Collision\n");
-		else {
+		}else {
 			std::printf("collision detected at normal: %f, %f, %f\n", simpletest.normalWorld.x, simpletest.normalWorld.y, simpletest.normalWorld.z);
 			std::printf("collision point : %f, %f, %f\n", (simpletest.collisionPointWorld).x, (simpletest.collisionPointWorld).y, simpletest.collisionPointWorld.z);
 		}

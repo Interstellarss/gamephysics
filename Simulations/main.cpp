@@ -380,6 +380,7 @@ int main(int argc, char* argv[])
 	
 #endif
 #ifdef RIGID_BODY_SYSTEM
+	/*
 	RigidBodySystemSimulator tmp;
 
 	tmp.addRigidBody(Vec3(0, 0, 0), 0.5f, 5);
@@ -388,8 +389,10 @@ int main(int argc, char* argv[])
 
 	tmp.setVelocityOf(0, Vec3(0.0f, -0.1f, 0.05f));
 
-	 //g_pSimulator = new RigidBodySystemSimulator();
 	g_pSimulator = &tmp;
+	*/
+
+	g_pSimulator = new RigidBodySystemSimulator();
 
 #endif
 #ifdef SPH_SYSTEM

@@ -54,6 +54,7 @@ void RigidBodySystemSimulator::simulateTimestep(float timeStep)
 
 	this->updateInertiaTensorAndAngu();
 
+	this->updateLinear(timeStep);
 	/*
 	// update current setup for each frame
 	switch (m_iTestCase)
@@ -78,16 +79,20 @@ void RigidBodySystemSimulator::notifyCaseChanged(int testCase) {
 	*/
 	//break;
 	this->m_iIntegrator = testCase;
+
 	switch (m_iIntegrator) 
 	{
 	case 0:
 		cout << "single box !\n";
-		this->m_pRigidBodySystem.clear();
-		this->addRigidBody(Vec3(0, 0, 0), 0.5f, 5);
+		//this->m_pRigidBodySystem.clear();
+		//this->m_pRigidBodySystem.swap(vector<RigidBody>());
+		this->addRigidBody(Vec3(-1.0f, -0.2f, 0.1f), Vec3(0.4f,0.2f,0.2f), 10.0f);
+		//this->applyForceOnBody(0, Vec3(0.0, 0.0f, 0.0), Vec3(0, 0, 200));
 		break;
 	case 1:
 		cout << "two boxes!\n";
-		this->m_pRigidBodySystem.clear();
+		//this->m_pRigidBodySystem.clear();
+		//this->m_pRigidBodySystem.swap(vector<RigidBody>());
 		this->addRigidBody(Vec3(-0.1f, -0.2f, 0.1f), Vec3(0.3f, 0.2f, 0.2f), 100.0f);
 		this->addRigidBody(Vec3(0.0f, 0.2f,0.0f), Vec3(0.4f, 0.2f, 0.2f), 100.0f);
 		this->setOrientationOf(1, GamePhysics::Quat(Vec3(0.0f, 0.0f, 1.0f), (float)(M_PI)*0.25f));
@@ -115,10 +120,13 @@ void RigidBodySystemSimulator::externalForcesCalculations(float timeElapsed) {
 		Vec3 inputWorld = worldViewInv.transformVectorNormal(inputView);
 		// find a proper scale!
 		float inputScale = 0.001f;
-		inputWorld = inputWorld * inputScale;
-		if (m_pRigidBodySystem.size() == 1) {
-			m_pRigidBodySystem[0].vPosition += inputWorld;
+		//inputWorld = inputWorld * inputScale;
+		
+		if (m_iIntegrator == 0) {
+
+			this->applyForceOnBody(0, inputWorld, inputWorld * inputScale);
 		}
+		
 		//m_vfMovableObjectPos = m_vfMovableObjectFinalPos + inputWorld;
 	}
 	else {
@@ -128,10 +136,7 @@ void RigidBodySystemSimulator::externalForcesCalculations(float timeElapsed) {
 
 void RigidBodySystemSimulator::drawFrame(ID3D11DeviceContext* pd3dImmediateContext){
 
-	for (int i = 0; i < m_pRigidBodySystem.size();i++) {
-		DUC->drawRigidBody(XMMatrixScalingFromVector(m_pRigidBodySystem[i].vPosition.toDirectXVector()));
-		//DUC->drawSphere(m_pRigidBodySystem[i].vPosition, m_pRigidBodySystem[i].size);
-	}
+	drawRigid();
 	//DUC->drawRigidBody();
 }
 
@@ -170,6 +175,7 @@ Vec3 RigidBodySystemSimulator::getAngularVelocityOfRigidBody(int i) {
 
 void RigidBodySystemSimulator::applyForceOnBody(int i, Vec3 loc, Vec3 force) {
 	m_pRigidBodySystem[i].vTorque += Vec3(loc.y*force.z - force.y*loc.z, force.x*loc.z - loc.x * force.z, loc.x * force.y - force.x * loc.y);
+	m_pRigidBodySystem[i].acc += force / m_pRigidBodySystem[i].fMass;
 }
 
 void RigidBodySystemSimulator::addRigidBody(Vec3 position, Vec3 size, int mass) {
@@ -223,6 +229,16 @@ void RigidBodySystemSimulator::updateAngularMomentum(float timestep) {
 }
 */
 
+void RigidBodySystemSimulator::drawRigid() {
+	for (int i = 0; i < m_pRigidBodySystem.size(); i++) {
+		XMMATRIX scale = XMMatrixScalingFromVector(m_pRigidBodySystem[i].size.toDirectXVector());
+		XMMATRIX transl = XMMatrixTranslationFromVector(m_pRigidBodySystem[i].vPosition.toDirectXVector());
+		DUC->drawRigidBody(scale * transl);
+		//DUC->drawSphere(m_pRigidBodySystem[i].vPosition, m_pRigidBodySystem[i].size);
+	}
+}
+
+
 void RigidBodySystemSimulator::precomputing() {
 	Vec3 tmp;
 	
@@ -260,4 +276,10 @@ void RigidBodySystemSimulator::updateInertiaTensorAndAngu() {
 	}
 }
 
+void RigidBodySystemSimulator::updateLinear(float timestep) {
+	for (int i = 0; i < m_pRigidBodySystem.size();i++) {
+		m_pRigidBodySystem[i].vPosition += timestep * m_pRigidBodySystem[i].vVelocity;
+		m_pRigidBodySystem[i].vVelocity += timestep * m_pRigidBodySystem[i].acc;
+	}
+}
 
