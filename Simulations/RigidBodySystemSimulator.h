@@ -25,10 +25,6 @@ struct RigidBody {
 
 	XMMATRIX I0; 
 
-	//Vec3 force;
-
-	//Vec3 vPositionBody;
-
 	Vec3 vAngularVelocity;
 
 	Vec3 angularMomentum;
@@ -82,7 +78,7 @@ public:
 	//for simulation
 	void updateLinear(float timestep);
 
-	void precomputing(int i);
+	void precomputing(RigidBody rb);
 
 	void updateOrientationAndMomentum(float timestep);
 
