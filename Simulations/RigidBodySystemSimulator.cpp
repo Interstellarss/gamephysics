@@ -51,15 +51,17 @@ void RigidBodySystemSimulator::initUI(DrawingUtilitiesClass* DUC)
 void RigidBodySystemSimulator::simulateTimestep(float timeStep)
 {
 
-	this->precomputing();
+	//this->precomputing();
 
 	this->updateOrientationAndMomentum(timeStep);
 
 	this->updateInertiaTensorAndAngu();
 
-	this->collisionHandeling();
+	//this->collisionHandeling();
 
 	this->updateLinear(timeStep);
+
+	this->collisionHandeling();
 	/*
 	// update current setup for each frame
 	switch (m_iTestCase)
@@ -124,11 +126,11 @@ void RigidBodySystemSimulator::externalForcesCalculations(float timeElapsed) {
 		Vec3 inputView = Vec3((float)mouseDiff.x, (float)-mouseDiff.y, 0);
 		Vec3 inputWorld = worldViewInv.transformVectorNormal(inputView);
 		// find a proper scale!
-		float inputScale = 0.001f;
+		float inputScale = 0.01f;
 		//inputWorld = inputWorld * inputScale;
 		
 		if (m_iIntegrator == 0) {
-			this->applyForceOnBody(0, inputWorld, inputWorld * inputScale);
+			this->applyForceOnBody(0, inputWorld, (-1) * inputWorld * inputScale);
 		}
 		
 		//m_vfMovableObjectPos = m_vfMovableObjectFinalPos + inputWorld;
@@ -189,18 +191,21 @@ void RigidBodySystemSimulator::addRigidBody(Vec3 position, Vec3 size, int mass) 
 	tmp.size = size;
 	m_pRigidBodySystem.push_back(tmp);
 
+	this->precomputing();
+
 	//Vec3 tmpSum(0,0,0);
 	
-	Vec3 tmp2 = m_cm * totalMass + position * mass;
+	//Vec3 tmp2 = m_cm * totalMass + position * mass;
 
-	totalMass += mass;
+	//totalMass += mass;
 
-	m_cm = tmp2 / totalMass;
-
+	//m_cm = tmp2 / totalMass;
+	/*
 	for (int i = 0; i < m_pRigidBodySystem.size();i++) {
 		m_pRigidBodySystem[i].vPositionBody = m_pRigidBodySystem[i].vPosition - m_cm;
 		//m_pRigidBodySystem[i].tMass += mass;
 	}
+	*/
 }
 
 void RigidBodySystemSimulator::setOrientationOf(int i, Quat orientation) {
@@ -242,8 +247,10 @@ void RigidBodySystemSimulator::drawRigid() {
 	}
 }
 
-
+//don't need to compute every time
 void RigidBodySystemSimulator::precomputing() {
+	
+	/*
 	Vec3 tmp;
 	
 	for (int i = 0; i < m_pRigidBodySystem.size(); i++) {
@@ -251,9 +258,11 @@ void RigidBodySystemSimulator::precomputing() {
 	}
 
 	m_cm = tmp / totalMass;
+	*/
 
 	for (int i = 0; i < m_pRigidBodySystem.size();i++) {
-		m_pRigidBodySystem[i].vPositionBody = m_pRigidBodySystem[i].vPosition - m_cm;
+		//m_pRigidBodySystem[i].vPositionBody = m_pRigidBodySystem[i].vPosition - m_cm;
+		m_pRigidBodySystem[i].vPositionBody = m_pRigidBodySystem[i].vPosition;
 
 		covMatrix._11 = m_pRigidBodySystem[i].fMass * m_pRigidBodySystem[i].vPositionBody.x * m_pRigidBodySystem[i].vPositionBody.x;
 		covMatrix._12 = m_pRigidBodySystem[i].fMass * m_pRigidBodySystem[i].vPositionBody.x * m_pRigidBodySystem[i].vPositionBody.y;
@@ -274,8 +283,13 @@ void RigidBodySystemSimulator::precomputing() {
 
 void RigidBodySystemSimulator::updateInertiaTensorAndAngu() {
 	for (int i = 0; i < m_pRigidBodySystem.size(); i++) {
+		//update the inverse inertia tensor
 		m_pRigidBodySystem[i].tensor =  m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix() * XMMatrixInverse(nullptr, I0) * XMMatrixTranspose(m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix());
+
+		//update the angualr velocity
 		m_pRigidBodySystem[i].vAngularVelocity = (GamePhysics::Mat4f(m_pRigidBodySystem[i].tensor) * GamePhysics::Vec3(m_pRigidBodySystem[i].angularMomentum).toDirectXVector()).toDirectXVector();
+
+		//update the position based on new orientation
 		m_pRigidBodySystem[i].vPosition = m_cm + m_pRigidBodySystem[i].qOrientation.getRotMat() * m_pRigidBodySystem[i].vPositionBody;
 	}
 }
@@ -302,6 +316,8 @@ void RigidBodySystemSimulator::collisionHandeling() {
 				continue;
 			}
 			else {
+
+				//
 				Vec3 relV = m_pRigidBodySystem[j].vVelocity + crossProduct(m_pRigidBodySystem[i].vAngularVelocity, m_pRigidBodySystem[i].vPositionBody)- m_pRigidBodySystem[i].vVelocity - crossProduct(m_pRigidBodySystem[j].vAngularVelocity, m_pRigidBodySystem[j].vPositionBody);
 				float c = 1;
 				auto tmp = GamePhysics::Mat4f(m_pRigidBodySystem[i].tensor) * GamePhysics::Vec3((GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[i].vPosition, info.normalWorld))).toDirectXVector();
@@ -311,11 +327,14 @@ void RigidBodySystemSimulator::collisionHandeling() {
 						(crossProduct(Vec3(tmp.x, tmp.y,tmp.z), info.collisionPointWorld - m_pRigidBodySystem[i].vPosition) +
 						crossProduct(Vec3(tmp2.x,tmp2.y,tmp2.z) , info.collisionPointWorld - m_pRigidBodySystem[j].vPosition)) * info.normalWorld
 						);
-				m_pRigidBodySystem[i].vVelocity += impuls / m_pRigidBodySystem[i].fMass;
-				m_pRigidBodySystem[j].vVelocity += impuls / m_pRigidBodySystem[j].fMass;
 
+				//velocity changes  
+				m_pRigidBodySystem[i].vVelocity += impuls / m_pRigidBodySystem[i].fMass;
+				m_pRigidBodySystem[j].vVelocity -= impuls / m_pRigidBodySystem[j].fMass;
+
+				//todo: change angular velocity here
 				m_pRigidBodySystem[i].angularMomentum += GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[i].vPosition, impuls);
-				m_pRigidBodySystem[j].angularMomentum += GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[j].vPosition, impuls);
+				m_pRigidBodySystem[j].angularMomentum -= GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[j].vPosition, impuls);
 
 			}
 		}
