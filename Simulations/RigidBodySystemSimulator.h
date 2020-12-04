@@ -23,10 +23,11 @@ struct RigidBody {
 
 	Vec3 vVelocity;
 
+	XMMATRIX I0; 
+
 	//Vec3 force;
 
-	//Vec3 centerM;
-	Vec3 vPositionBody;
+	//Vec3 vPositionBody;
 
 	Vec3 vAngularVelocity;
 
@@ -34,7 +35,7 @@ struct RigidBody {
 
 	GamePhysics::Quat qOrientation;
 
-	XMMATRIX tensor;
+	XMMATRIX tensor; //(inverse) inertial tensor
 
 	Vec3 size;
 
@@ -81,7 +82,7 @@ public:
 	//for simulation
 	void updateLinear(float timestep);
 
-	void precomputing();
+	void precomputing(int i);
 
 	void updateOrientationAndMomentum(float timestep);
 
@@ -99,13 +100,9 @@ private:
 	// RigidBodySystem * m_pRigidBodySystem; 
 	Vec3 m_externalForce;
 
-	Vec3 m_cm; //world position for mass center
+	//Vec3 m_cm; //world position for mass center
 
-	XMFLOAT3X3 covMatrix;
-
-	int totalMass;
-
-	XMMATRIX I0;
+	//XMFLOAT3X3 covMatrix;
 
 	vector<RigidBody> m_pRigidBodySystem;
 
