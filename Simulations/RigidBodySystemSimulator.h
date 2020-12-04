@@ -19,6 +19,8 @@ struct RigidBody {
 
 	int  fMass;
 
+
+
 	Vec3 vPosition;
 
 	Vec3 vVelocity;

@@ -28,22 +28,7 @@ void RigidBodySystemSimulator::initUI(DrawingUtilitiesClass* DUC)
 {
 	this->DUC = DUC;
 
-	//TwAddVarRW(DUC->g_pTweakBar, "")
-
-	/*
-	switch (m_iIntegrator)
-	{
-	case 0:
-
-		break;
-	case 1:
-		//TwAddVarRW(DUC->g_pTweakBar, "Num Spheres", TW_TYPE_INT32, &m_iNumSpheres, "min=1");
-		//TwAddVarRW(DUC->g_pTweakBar, "Sphere Size", TW_TYPE_FLOAT, &m_fSphereSize, "min=0.01 step=0.01");
-		break;
-	case 2:break;
-	default:break;
-	}
-	*/
+	
 }
 
 
@@ -56,7 +41,10 @@ void RigidBodySystemSimulator::simulateTimestep(float timeStep)
 
 	//printf("%s\n", m_pRigidBodySystem[0].vVelocity.toString());
 
+    //printf("%s\n", m_pRigidBodySystem[0].vAngularVelocity.toString());
+
 	
+
 	this->updateOrientationAndMomentum(timeStep);
 	
 	this->updateInertiaTensorAndAngu();
@@ -68,20 +56,7 @@ void RigidBodySystemSimulator::simulateTimestep(float timeStep)
 	
 	this->updateLinear(timeStep);
 
-	//this->collisionHandeling();
-	
-	/*
-	// update current setup for each frame
-	switch (m_iTestCase)
-	{// handling different cases
-	case 0:
-		// rotate the teapot
-		
-		break;
-	default:
-		break;
-	}
-	*/
+	this->collisionHandeling();
 }
 
 
@@ -139,6 +114,8 @@ void RigidBodySystemSimulator::externalForcesCalculations(float timeElapsed) {
 		//inputWorld = inputWorld * inputScale;
 		
 		if (m_iIntegrator == 0) {
+			
+			//maybe a better way to deal with the input
 			this->applyForceOnBody(0, inputWorld, inputWorld * inputScale);
 		}
 		
@@ -189,8 +166,11 @@ Vec3 RigidBodySystemSimulator::getAngularVelocityOfRigidBody(int i) {
 }
 
 void RigidBodySystemSimulator::applyForceOnBody(int i, Vec3 loc, Vec3 force) {
-	m_pRigidBodySystem[i].vTorque += Vec3(loc.y*force.z - force.y*loc.z, force.x*loc.z - loc.x * force.z, loc.x * force.y - force.x * loc.y);
+	
+	m_pRigidBodySystem[i].vTorque += Vec3((loc.y - m_pRigidBodySystem[i].vPosition.y)*force.z - force.y* (loc.z - m_pRigidBodySystem[i].vPosition.z), force.x* (loc.z - m_pRigidBodySystem[i].vPosition.z) - (loc.x - m_pRigidBodySystem[i].vPosition.x) * force.z, (loc.x - m_pRigidBodySystem[i].vPosition.x) * force.y - force.x * (loc.y - m_pRigidBodySystem[i].vPosition.y));
 	m_pRigidBodySystem[i].acc += force / m_pRigidBodySystem[i].fMass;
+	
+
 }
 
 
@@ -199,6 +179,7 @@ void RigidBodySystemSimulator::addRigidBody(Vec3 position, Vec3 size, int mass) 
 	tmp.fMass = mass;
 	tmp.vPosition = position;
 	tmp.size = size;
+	//comppting I0
 	precomputing(tmp);
 	m_pRigidBodySystem.push_back(tmp);
 
@@ -216,8 +197,11 @@ void RigidBodySystemSimulator::setVelocityOf(int i, Vec3 velocity) {
 
 void RigidBodySystemSimulator::updateOrientationAndMomentum(float timestep) {
 	for (int i = 0; i < m_pRigidBodySystem.size(); i++) {
+		//update the orientation
 		GamePhysics::Quat tmp = GamePhysics::Quat(m_pRigidBodySystem[i].vAngularVelocity.x, m_pRigidBodySystem[i].vAngularVelocity.y, m_pRigidBodySystem[i].vAngularVelocity.z, 0).operator*(m_pRigidBodySystem[i].qOrientation);
 		m_pRigidBodySystem[i].qOrientation += tmp.operator*=(timestep * 0.5);
+		
+		//update the angular momentum
 		m_pRigidBodySystem[i].angularMomentum += m_pRigidBodySystem[i].vTorque * timestep;
 	}
 }
@@ -236,9 +220,9 @@ void RigidBodySystemSimulator::drawRigid() {
 //don't need to compute every time
 void RigidBodySystemSimulator::precomputing(RigidBody rb) {
 	
-	float  x = (1 / 12) * rb.fMass * (sqrtf(rb.size.y) + sqrtf(rb.size.z));
-	float  y = (1 / 12) * rb.fMass * (sqrtf(rb.size.x) + sqrtf(rb.size.z));
-	float  z = (1 / 12) * rb.fMass * (sqrtf(rb.size.y) + sqrtf(rb.size.x));
+	float  x = (1 / 12) * rb.fMass * (pow(rb.size.y,2) + pow(rb.size.z, 2));
+	float  y = (1 / 12) * rb.fMass * (pow(rb.size.x, 2) + pow(rb.size.z,2));
+	float  z = (1 / 12) * rb.fMass * (pow(rb.size.y,2) + pow(rb.size.x, 2));
 
 	rb.I0 = XMMatrixScaling(x,y,z);
 }
@@ -255,6 +239,7 @@ void RigidBodySystemSimulator::updateInertiaTensorAndAngu() {
 		//m_pRigidBodySystem[i].vPosition += m_pRigidBodySystem[i].qOrientation.getRotMat() * m_pRigidBodySystem[i].vPosition;
 	}
 }
+
 
 void RigidBodySystemSimulator::updateLinear(float timestep) {
 	for (int i = 0; i < m_pRigidBodySystem.size();i++) {
