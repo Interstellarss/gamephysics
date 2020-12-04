@@ -331,7 +331,7 @@ namespace collisionTools{
 		}
 		// if we get here then we know that every axis had overlap on it
 		// so we can guarantee an intersection
-		XMVECTOR normal;
+		XMVECTOR normal{};
 		switch (fromWhere){
 		case 0:{
 				   normal = axis;
@@ -383,7 +383,7 @@ namespace collisionTools{
 		info.isValid = true;
 		info.collisionPointWorld = collisionPoint;
 		info.depth = smallOverlap;
-		info.normalWorld = normal*-1;
+		info.normalWorld = normal * -1;
 		return info;
 	}
 }

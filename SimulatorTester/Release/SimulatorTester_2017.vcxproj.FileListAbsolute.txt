@@ -1,3 +1,2 @@
 D:\gamephysic\gamephysicstemplate\SimulatorTester\Release\SimulatorTester_2017.vcxprojAssemblyReference.cache
 D:\gamephysic\gamephysicstemplate\SimulatorTester\Release\SimulatorTester_2017.vcxproj.CopyComplete
-D:\gamephysic\gamephysicstemplate\Release\effect.fxo

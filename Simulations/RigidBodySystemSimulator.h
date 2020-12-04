@@ -87,6 +87,8 @@ public:
 
 	void updateInertiaTensorAndAngu();
 
+	void collisionHandeling();
+
 	//void updateAngularMomentum(float timestep);
 
 	//void updateObjectPos();

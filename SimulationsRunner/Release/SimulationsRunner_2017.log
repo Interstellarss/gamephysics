@@ -1,5 +1,16 @@
 ﻿  main.cpp
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(30,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(30,66): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(33,76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(127,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(129,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(146,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(232,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(261,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(284,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(309,21): warning C4018: '<': signed/unsigned mismatch
 D:\gamephysic\gamephysicstemplate\Simulations\main.cpp(44,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\gamephysic\gamephysicstemplate\Simulations\main.cpp(395,47): warning C4316: 'RigidBodySystemSimulator': object allocated on the heap may not be aligned 16
 D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,36): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
           with
           [
@@ -102,8 +113,8 @@ D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,43): warning
               Scalar=double
           ]
   Generating code
-  106 of 1260 functions ( 8.4%) were compiled, the rest were copied from previous compilation.
-    49 functions were new in current compilation
-    110 functions had inline decision re-evaluated but remain unchanged
+  2 of 1386 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    12 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SimulationsRunner_2017.vcxproj -> D:\gamephysic\gamephysicstemplate\Win32\Release\SimulationsRunner_2017.exe
