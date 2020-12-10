@@ -17,9 +17,7 @@
 
 struct RigidBody {
 
-	int  fMass;
-
-
+	int  fMass;  //mass of the rigid body
 
 	Vec3 vPosition;
 
@@ -88,9 +86,9 @@ public:
 
 	void collisionHandeling();
 
-	//void updateAngularMomentum(float timestep);
+	void removeForce();
 
-	//void updateObjectPos();
+
 
 private:
 	// Attributes

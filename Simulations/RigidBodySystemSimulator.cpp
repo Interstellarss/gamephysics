@@ -27,8 +27,6 @@ void RigidBodySystemSimulator::reset() {
 void RigidBodySystemSimulator::initUI(DrawingUtilitiesClass* DUC)
 {
 	this->DUC = DUC;
-
-	
 }
 
 
@@ -57,6 +55,10 @@ void RigidBodySystemSimulator::simulateTimestep(float timeStep)
 	this->updateLinear(timeStep);
 
 	this->collisionHandeling();
+
+	this->removeForce();
+
+
 }
 
 
@@ -169,10 +171,12 @@ void RigidBodySystemSimulator::applyForceOnBody(int i, Vec3 loc, Vec3 force) {
 	
 	m_pRigidBodySystem[i].vTorque += Vec3((loc.y - m_pRigidBodySystem[i].vPosition.y)*force.z - force.y* (loc.z - m_pRigidBodySystem[i].vPosition.z), force.x* (loc.z - m_pRigidBodySystem[i].vPosition.z) - (loc.x - m_pRigidBodySystem[i].vPosition.x) * force.z, (loc.x - m_pRigidBodySystem[i].vPosition.x) * force.y - force.x * (loc.y - m_pRigidBodySystem[i].vPosition.y));
 	m_pRigidBodySystem[i].acc += force / m_pRigidBodySystem[i].fMass;
-	
-
 }
 
+void RigidBodySystemSimulator::removeForce() {
+	//remove force based on index
+
+}
 
 void RigidBodySystemSimulator::addRigidBody(Vec3 position, Vec3 size, int mass) {
 	RigidBody tmp;
@@ -220,8 +224,8 @@ void RigidBodySystemSimulator::drawRigid() {
 //don't need to compute every time
 void RigidBodySystemSimulator::precomputing(RigidBody rb) {
 	
-	float  x = (1 / 12) * rb.fMass * (pow(rb.size.y,2) + pow(rb.size.z, 2));
-	float  y = (1 / 12) * rb.fMass * (pow(rb.size.x, 2) + pow(rb.size.z,2));
+	float  x = (1 / 12) * rb.fMass * (pow(rb.size.x,2) + pow(rb.size.z, 2));
+	float  y = (1 / 12) * rb.fMass * (pow(rb.size.z, 2) + pow(rb.size.y,2));
 	float  z = (1 / 12) * rb.fMass * (pow(rb.size.y,2) + pow(rb.size.x, 2));
 
 	rb.I0 = XMMatrixScaling(x,y,z);
