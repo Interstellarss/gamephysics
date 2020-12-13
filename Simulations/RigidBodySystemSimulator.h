@@ -15,14 +15,22 @@
 
 #define TESTCASEUSEDTORUNTEST 2
 
+struct Force {
+	Vec3 loc;
+	Vec3 force;
+};
+
 struct RigidBody {
 
 	int  fMass;  //mass of the rigid body
+
+	vector<Force> forces;
 
 	Vec3 vPosition;
 
 	Vec3 vVelocity;
 
+	//inverse I0
 	XMMATRIX I0; 
 
 	Vec3 vAngularVelocity;
@@ -31,7 +39,8 @@ struct RigidBody {
 
 	GamePhysics::Quat qOrientation;
 
-	XMMATRIX tensor; //(inverse) inertial tensor
+	//XMMATRIX tensor; //(inverse) inertial tensor
+	GamePhysics::Mat4f tensor;
 
 	Vec3 size;
 
@@ -76,10 +85,16 @@ public:
 	void drawRigid();
 
 	//for simulation
+	//update torque based on forces
+	void updateTorq();
+
+
 	void updateLinear(float timestep);
 
+	//precomputing the inertia tensor for rigidbody while still
 	void precomputing(RigidBody rb);
 
+	//
 	void updateOrientationAndMomentum(float timestep);
 
 	void updateInertiaTensorAndAngu();

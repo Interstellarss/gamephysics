@@ -11,11 +11,8 @@ D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(284,21): warning
 D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(309,21): warning C4018: '<': signed/unsigned mismatch
 D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(13,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(15,71): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(22,1): warning C4316: 'RigidBodySystemSimulator': object allocated on the heap may not be aligned 16
 D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(24,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(54,1): warning C4316: 'RigidBodySystemSimulator': object allocated on the heap may not be aligned 16
 D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(58,1): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(76,1): warning C4316: 'RigidBodySystemSimulator': object allocated on the heap may not be aligned 16
 D:\gamephysic\gamephysicstemplate\SimulatorTester\PublicRigidBodiesTests.cpp(79,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,36): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
           with
@@ -121,8 +118,10 @@ D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,43): warning
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
      Creating library D:\gamephysic\gamephysicstemplate\Release\SimulationsTester.lib and object D:\gamephysic\gamephysicstemplate\Release\SimulationsTester.exp
   Generating code
-  3 of 560 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    5 functions had inline decision re-evaluated but remain unchanged
+  168 of 633 functions (26.5%) were compiled, the rest were copied from previous compilation.
+    84 functions were new in current compilation
+    68 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
+msvcprt.lib(MSVCP140.dll) : warning LNK4020: a type record in 'D:\gamephysic\gamephysicstemplate\Simulations\Win32\Release\Simulations.pdb' is corrupted; some symbols and types may not be accessible from the debugger
+MSVCRT.lib(std_type_info_static.obj) : warning LNK4020: a type record in 'D:\gamephysic\gamephysicstemplate\Simulations\Win32\Release\Simulations.pdb' is corrupted; some symbols and types may not be accessible from the debugger
   SimulatorTester_2017.vcxproj -> D:\gamephysic\gamephysicstemplate\Release\SimulationsTester.dll
