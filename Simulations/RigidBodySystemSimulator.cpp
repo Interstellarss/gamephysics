@@ -230,7 +230,7 @@ void RigidBodySystemSimulator::updateOrientationAndMomentum(float timestep) {
 		//it failed afer adding this line, changing orientation so to say
 		m_pRigidBodySystem[i].qOrientation += tmp;
 
-		//perhaps still need to normalize orientation
+		//perhaps still need to normalize orientation?
 		if (m_pRigidBodySystem[i].qOrientation.norm() != 0) {
 			m_pRigidBodySystem[i].qOrientation = m_pRigidBodySystem[i].qOrientation.unit();
 		}
