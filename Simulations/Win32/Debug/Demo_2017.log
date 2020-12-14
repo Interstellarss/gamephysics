@@ -14,25 +14,40 @@ D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(309,21): warning
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(107,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(115,72): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(116,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(210,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(219,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(223,21): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(253,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(275,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(288,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(211,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(220,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(224,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(254,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(276,20): warning C4018: '<': signed/unsigned mismatch
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(289,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(290,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(296,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(321,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(328,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(329,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(291,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(297,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(326,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(333,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(334,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(390,37): warning C4244: '+=': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(391,37): warning C4244: '+=': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(392,37): warning C4244: '+=': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
 D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(67,44): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
           with
           [
               Scalar=GamePhysics::Real
           ]
 D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(66): message : while compiling class template member function 'GamePhysics::matrix4x4<double> GamePhysics::Quaternion<GamePhysics::Real>::getRotMat(void) const'
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(279): message : see reference to function template instantiation 'GamePhysics::matrix4x4<double> GamePhysics::Quaternion<GamePhysics::Real>::getRotMat(void) const' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(280): message : see reference to function template instantiation 'GamePhysics::matrix4x4<double> GamePhysics::Quaternion<GamePhysics::Real>::getRotMat(void) const' being compiled
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.h(40): message : see reference to class template instantiation 'GamePhysics::Quaternion<GamePhysics::Real>' being compiled
 D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(67,42): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
           with

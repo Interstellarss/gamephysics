@@ -1,6 +1,6 @@
 #include "RigidBodySystemSimulator.h"
 
-
+Vec3 MatMulVec(GamePhysics::Mat4f tensor, Vec3 vector);
 Vec3 crossProduct(Vec3 a, Vec3 b);
 
 RigidBodySystemSimulator::RigidBodySystemSimulator() {
@@ -104,7 +104,7 @@ void RigidBodySystemSimulator::notifyCaseChanged(int testCase) {
 		cout << "single box !\n";
 		//this->m_pRigidBodySystem.clear();
 		this->m_pRigidBodySystem.swap(vector<RigidBody>());
-		this->addRigidBody(Vec3(-1.0f, -0.2f, 0.1f), Vec3(0.4f,0.2f,0.2f), 1.0f);
+		this->addRigidBody(Vec3(-1.0f, -0.2f, 0.1f), Vec3(0.4f,0.2f,0.2f), 100.0f);
 		this->setOrientationOf(0, Quat(Vec3(0.0f, 0.0f, 1.0f), (float)(M_PI)*0.25f));
 		//this->applyForceOnBody(0, Vec3(0.0, 0.0f, 0.0), Vec3(0, 0, 200));
 		break;
@@ -138,7 +138,7 @@ void RigidBodySystemSimulator::externalForcesCalculations(float timeElapsed) {
 		Vec3 inputView = Vec3((float)mouseDiff.x, (float)-mouseDiff.y, 0);
 		Vec3 inputWorld = worldViewInv.transformVectorNormal(inputView);
 		// find a proper scale!
-		float inputScale = 0.1f;
+		float inputScale = 0.0001f;
 		//inputWorld = inputWorld * inputScale;
 		
 		if (m_iIntegrator == 0) {
@@ -150,6 +150,7 @@ void RigidBodySystemSimulator::externalForcesCalculations(float timeElapsed) {
 		//m_vfMovableObjectPos = m_vfMovableObjectFinalPos + inputWorld;
 	}
 	else {
+		this->removeForce();
 		//m_vfMovableObjectFinalPos = m_vfMovableObjectPos;
 	}
 }
@@ -307,8 +308,12 @@ void RigidBodySystemSimulator::updateInertiaTensorAndAngu() {
 
 		//this line give the wrong value of calculation of Matrix .transform(vec)
 		//Mat.transformVector(Vec3(0,0,0)) should result in Vec3(0,0,0), but it isn't
-		auto tmp = m_pRigidBodySystem[i].tensor.transformVector(Vec3(0,0,0));
-	    m_pRigidBodySystem[i].vAngularVelocity = tmp;
+		//auto tmp = m_pRigidBodySystem[i].tensor.transformVector(Vec3(0,0,0));
+		//auto tmp = m_pRigidBodySystem[i].tensor.transformVector(m_pRigidBodySystem[i].angularMomentum);
+
+	    //m_pRigidBodySystem[i].vAngularVelocity = tmp;
+
+		m_pRigidBodySystem[i].vAngularVelocity = MatMulVec(m_pRigidBodySystem[i].tensor, m_pRigidBodySystem[i].angularMomentum);
 
 
 		//update the position based on new orientation (irrelevant)
@@ -344,13 +349,20 @@ void RigidBodySystemSimulator::collisionHandeling() {
 				Vec3 relV = m_pRigidBodySystem[j].vVelocity + crossProduct(m_pRigidBodySystem[i].vAngularVelocity, info.collisionPointWorld)- m_pRigidBodySystem[i].vVelocity - crossProduct(m_pRigidBodySystem[j].vAngularVelocity, info.collisionPointWorld);
 				float c = 1;
 
-				auto tmp = m_pRigidBodySystem[i].tensor.transformVector(GamePhysics::Vec3((GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[i].vPosition, info.normalWorld))));
+				//auto tmp = m_pRigidBodySystem[i].tensor.transformVector(GamePhysics::Vec3((GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[i].vPosition, info.normalWorld))));
 				//auto tmp2 = GamePhysics::Mat4f(m_pRigidBodySystem[j].tensor) * GamePhysics::Vec3((GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[j].vPosition, info.normalWorld))).toDirectXVector();
-				auto tmp2 = m_pRigidBodySystem[j].tensor.transformVector(GamePhysics::Vec3((GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[j].vPosition, info.normalWorld))));
+				//auto tmp2 = m_pRigidBodySystem[j].tensor.transformVector(GamePhysics::Vec3((GamePhysics::cross(info.collisionPointWorld - m_pRigidBodySystem[j].vPosition, info.normalWorld))));
+				/*
 				Vec3 impuls = -(1 + c) * relV * info.normalWorld /
 					(1/m_pRigidBodySystem[i].fMass + 1/m_pRigidBodySystem[j].fMass + 
 						(crossProduct(Vec3(tmp.x, tmp.y,tmp.z), info.collisionPointWorld - m_pRigidBodySystem[i].vPosition) +
 						crossProduct(Vec3(tmp2.x,tmp2.y,tmp2.z) , info.collisionPointWorld - m_pRigidBodySystem[j].vPosition)) * info.normalWorld
+						);
+						*/
+				Vec3 impuls = -(1 + c) * relV * info.normalWorld /
+					(1 / m_pRigidBodySystem[i].fMass + 1 / m_pRigidBodySystem[j].fMass +
+						(crossProduct(MatMulVec(m_pRigidBodySystem[i].tensor, info.collisionPointWorld - m_pRigidBodySystem[i].vPosition), info.collisionPointWorld - m_pRigidBodySystem[i].vPosition) +
+							crossProduct(MatMulVec(m_pRigidBodySystem[i].tensor, info.collisionPointWorld - m_pRigidBodySystem[j].vPosition), info.collisionPointWorld - m_pRigidBodySystem[j].vPosition)) * info.normalWorld
 						);
 
 				//velocity changes  
@@ -368,5 +380,17 @@ void RigidBodySystemSimulator::collisionHandeling() {
 
 Vec3 crossProduct(Vec3 a, Vec3 b) {
 	return Vec3(a.y * b.z - b.y * a.z, b.x * a.z - a.x * b.z, a.x * b.y - b.x * a.y);
+}
+
+Vec3 MatMulVec(GamePhysics::Mat4f tensor, Vec3 vector) {
+	float x = 0;
+	float y = 0;
+	float z = 0;
+	for (int i = 0; i < 4; i++) {
+		x += vector.x * tensor.value[0][i];
+		y += vector.y * tensor.value[1][i];
+		z += vector.z * tensor.value[2][i];
+ 	}
+	return Vec3(x, y, z);
 }
 
