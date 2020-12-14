@@ -23,9 +23,9 @@ D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(288,1
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(289,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(290,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(296,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(317,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(324,20): warning C4018: '<': signed/unsigned mismatch
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(325,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(321,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(328,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(329,21): warning C4018: '<': signed/unsigned mismatch
 D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(67,44): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
           with
           [
@@ -150,12 +150,4 @@ D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,44): warning
           [
               Scalar=double
           ]
-D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(606,1): warning C4244: '+=': conversion from 'double' to 'Scalar', possible loss of data
-          with
-          [
-              Scalar=float
-          ]
-D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(597): message : while compiling class template member function 'GamePhysics::vector3Dim<float> GamePhysics::matrix4x4<float>::operator *(const GamePhysics::vector3Dim<float> &) const'
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(342): message : see reference to function template instantiation 'GamePhysics::vector3Dim<float> GamePhysics::matrix4x4<float>::operator *(const GamePhysics::vector3Dim<float> &) const' being compiled
-D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.h(43): message : see reference to class template instantiation 'GamePhysics::matrix4x4<float>' being compiled
   Demo_2017.vcxproj -> D:\gamephysic\gamephysicstemplate\Win32\Debug\Simulations.lib
