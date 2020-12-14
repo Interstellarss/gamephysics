@@ -238,7 +238,7 @@ namespace collisionTools{
 				min = value;
 			}
 		}
-
+		//threr's a thrown, vertex without being initialized
 		return vertex;
 	}
 

@@ -1,4 +1,161 @@
-﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
-  
-  compilation object save succeeded; see D:\gamephysic\gamephysicstemplate\Win32\Debug\effect.fxo
+﻿  RigidBodySystemSimulator.cpp
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(11,1): warning C4005: 'NOMINMAX': macro redefinition
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp : message : see previous definition of 'NOMINMAX'
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(30,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(30,66): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(33,76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(127,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(129,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(146,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(232,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(261,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(284,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\collisionDetect.h(309,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(80,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(88,72): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(89,69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(183,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(192,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(196,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(225,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(246,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(259,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(260,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(261,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(267,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(286,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(293,20): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(294,21): warning C4018: '<': signed/unsigned mismatch
+D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(67,44): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(66): message : while compiling class template member function 'GamePhysics::matrix4x4<double> GamePhysics::Quaternion<GamePhysics::Real>::getRotMat(void) const'
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(250): message : see reference to function template instantiation 'GamePhysics::matrix4x4<double> GamePhysics::Quaternion<GamePhysics::Real>::getRotMat(void) const' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.h(40): message : see reference to class template instantiation 'GamePhysics::Quaternion<GamePhysics::Real>' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(67,42): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(67,40): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\quaternion.h(67,38): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,36): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(203): message : while compiling class template member function 'DirectX::XMVECTOR GamePhysics::vector3Dim<GamePhysics::Real>::toDirectXVector(void) const'
+D:\gamephysic\gamephysicstemplate\Simulations\DrawingUtilitiesClass.h(285): message : see reference to function template instantiation 'DirectX::XMVECTOR GamePhysics::vector3Dim<GamePhysics::Real>::toDirectXVector(void) const' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(859): message : see reference to class template instantiation 'GamePhysics::vector3Dim<GamePhysics::Real>' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,34): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\vectorbase.h(204,32): warning C4244: 'argument': conversion from 'const Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=GamePhysics::Real
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(773): message : while compiling class template member function 'DirectX::XMMATRIX GamePhysics::matrix4x4<double>::toDirectXMatrix(void)'
+D:\gamephysic\gamephysicstemplate\Simulations\DrawingUtilitiesClass.h(380): message : see reference to function template instantiation 'DirectX::XMMATRIX GamePhysics::matrix4x4<double>::toDirectXMatrix(void)' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\DrawingUtilitiesClass.h(379): message : see reference to class template instantiation 'GamePhysics::matrix4x4<double>' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(777,25): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(776,25): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(775,25): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,97): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,79): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,61): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(774,43): warning C4244: 'argument': conversion from 'Scalar' to 'float', possible loss of data
+          with
+          [
+              Scalar=double
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(606,1): warning C4244: '+=': conversion from 'double' to 'Scalar', possible loss of data
+          with
+          [
+              Scalar=float
+          ]
+D:\gamephysic\gamephysicstemplate\Simulations\util\matrixbase.h(597): message : while compiling class template member function 'GamePhysics::vector3Dim<float> GamePhysics::matrix4x4<float>::operator *(const GamePhysics::vector3Dim<float> &) const'
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.cpp(311): message : see reference to function template instantiation 'GamePhysics::vector3Dim<float> GamePhysics::matrix4x4<float>::operator *(const GamePhysics::vector3Dim<float> &) const' being compiled
+D:\gamephysic\gamephysicstemplate\Simulations\RigidBodySystemSimulator.h(43): message : see reference to class template instantiation 'GamePhysics::matrix4x4<float>' being compiled
   Demo_2017.vcxproj -> D:\gamephysic\gamephysicstemplate\Win32\Debug\Simulations.lib

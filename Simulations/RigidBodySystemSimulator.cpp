@@ -70,15 +70,15 @@ void RigidBodySystemSimulator::notifyCaseChanged(int testCase) {
 	*/
 	//break;
 	this->m_iIntegrator = testCase;
-	//this->m_pRigidBodySystem.swap(vector<RigidBody>());
+	this->m_pRigidBodySystem.swap(vector<RigidBody>());
 	switch (m_iIntegrator) 
 	{
 	case 0:
 		cout << "single box !\n";
 		//this->m_pRigidBodySystem.clear();
-		this->m_pRigidBodySystem.swap(vector<RigidBody>());
+		//this->m_pRigidBodySystem.swap(vector<RigidBody>());
 		this->addRigidBody(Vec3(-1.0f, -0.2f, 0.1f), Vec3(0.4f,0.2f,0.2f), 10.0f);
-		this->setOrientationOf(0, Quat(Vec3(0.0f, 0.0f, 1.0f), (float)(M_PI)*0.25f));
+		//this->setOrientationOf(0, Quat(Vec3(0.0f, 0.0f, 1.0f), (float)(M_PI)*0.25f));
 		//this->applyForceOnBody(0, Vec3(0.0, 0.0f, 0.0), Vec3(0, 0, 200));
 		break;
 	case 1:
@@ -205,7 +205,7 @@ void RigidBodySystemSimulator::addRigidBody(Vec3 position, Vec3 size, int mass) 
 	tmp.fMass = mass;
 	tmp.vPosition = position;
 	tmp.size = size;
-	//comppting I0
+	//computing I0
 	precomputing(tmp);
 	m_pRigidBodySystem.push_back(tmp);
 
@@ -272,8 +272,8 @@ void RigidBodySystemSimulator::updateInertiaTensorAndAngu() {
 		//m_pRigidBodySystem[i].vAngularVelocity = (GamePhysics::Mat4f(m_pRigidBodySystem[i].tensor) * GamePhysics::Vec3(m_pRigidBodySystem[i].angularMomentum).toDirectXVector()).toDirectXVector();
 		//m_pRigidBodySystem[i].vAngularVelocity = m_pRigidBodySystem[i].tensor * m_pRigidBodySystem[i].angularMomentum.toDirectXVector();
 		
-		auto tmp = m_pRigidBodySystem[i].tensor * m_pRigidBodySystem[i].angularMomentum.toDirectXVector();
-	    m_pRigidBodySystem[i].vAngularVelocity = Vec3(tmp.x, tmp.y, tmp.z);
+		auto tmp = m_pRigidBodySystem[i].tensor.transformVector(m_pRigidBodySystem[i].angularMomentum);
+	    m_pRigidBodySystem[i].vAngularVelocity = tmp;
 
 
 		//update the position based on new orientation (irrelevant)
