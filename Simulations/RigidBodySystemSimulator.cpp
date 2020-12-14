@@ -48,6 +48,33 @@ void RigidBodySystemSimulator::simulateTimestep(float timeStep)
 	this->updateInertiaTensorAndAngu();
 
 	//printf("%s\n", m_pRigidBodySystem[0].vPosition.toString());
+	//here
+	/*
+	printf("Position:\n");
+
+	printf("x = %g\n", (float)m_pRigidBodySystem[0].vPosition.x);
+
+	printf("y = %g\n", (float)m_pRigidBodySystem[0].vPosition.y);
+
+	printf("z = %g\n", (float)m_pRigidBodySystem[0].vPosition.z);
+	*/
+	if (m_pRigidBodySystem[0].vAngularVelocity.squaredDistanceTo(Vec3(0,0,0)) != 0) {
+		auto euler = m_pRigidBodySystem[0].qOrientation.getAxis();
+		printf("angualr velocity:\n");
+		printf("x  = %g\n", (float)m_pRigidBodySystem[0].vAngularVelocity.x);
+		printf("y  = %g\n", (float)m_pRigidBodySystem[0].vAngularVelocity.y);
+		printf("z  = %g\n", (float)m_pRigidBodySystem[0].vAngularVelocity.z);
+		printf("Orientation:\n");
+		printf("x  = %g\n y = %g\n z = %g\n", (float)euler.x, (float)euler.y, (float)euler.z);
+	}
+
+	if (m_pRigidBodySystem[0].angularMomentum.squaredDistanceTo(Vec3(0, 0, 0)) != 0) {
+		printf("angular momentum:\n");
+		printf("x = %g\n, y = %g\n, z = %g\n", m_pRigidBodySystem[0].angularMomentum.x, m_pRigidBodySystem[0].angularMomentum.y, m_pRigidBodySystem[0].angularMomentum.z);
+	}
+
+
+
 
 	//this->collisionHandeling();
 
@@ -70,15 +97,15 @@ void RigidBodySystemSimulator::notifyCaseChanged(int testCase) {
 	*/
 	//break;
 	this->m_iIntegrator = testCase;
-	this->m_pRigidBodySystem.swap(vector<RigidBody>());
+	//this->m_pRigidBodySystem.swap(vector<RigidBody>());
 	switch (m_iIntegrator) 
 	{
 	case 0:
 		cout << "single box !\n";
 		//this->m_pRigidBodySystem.clear();
-		//this->m_pRigidBodySystem.swap(vector<RigidBody>());
-		this->addRigidBody(Vec3(-1.0f, -0.2f, 0.1f), Vec3(0.4f,0.2f,0.2f), 10.0f);
-		//this->setOrientationOf(0, Quat(Vec3(0.0f, 0.0f, 1.0f), (float)(M_PI)*0.25f));
+		this->m_pRigidBodySystem.swap(vector<RigidBody>());
+		this->addRigidBody(Vec3(-1.0f, -0.2f, 0.1f), Vec3(0.4f,0.2f,0.2f), 1.0f);
+		this->setOrientationOf(0, Quat(Vec3(0.0f, 0.0f, 1.0f), (float)(M_PI)*0.25f));
 		//this->applyForceOnBody(0, Vec3(0.0, 0.0f, 0.0), Vec3(0, 0, 200));
 		break;
 	case 1:
@@ -111,7 +138,7 @@ void RigidBodySystemSimulator::externalForcesCalculations(float timeElapsed) {
 		Vec3 inputView = Vec3((float)mouseDiff.x, (float)-mouseDiff.y, 0);
 		Vec3 inputWorld = worldViewInv.transformVectorNormal(inputView);
 		// find a proper scale!
-		float inputScale = 0.001f;
+		float inputScale = 0.1f;
 		//inputWorld = inputWorld * inputScale;
 		
 		if (m_iIntegrator == 0) {
@@ -205,6 +232,7 @@ void RigidBodySystemSimulator::addRigidBody(Vec3 position, Vec3 size, int mass) 
 	tmp.fMass = mass;
 	tmp.vPosition = position;
 	tmp.size = size;
+	tmp.vAngularVelocity = Vec3(0.0, 0.0, 0.0);
 	//computing I0
 	precomputing(tmp);
 	m_pRigidBodySystem.push_back(tmp);
@@ -225,14 +253,15 @@ void RigidBodySystemSimulator::updateOrientationAndMomentum(float timestep) {
 	for (int i = 0; i < m_pRigidBodySystem.size(); i++) {
 		//update the orientation
 		//maybe the problem woul be here
-		GamePhysics::Quat tmp = GamePhysics::Quat(m_pRigidBodySystem[i].vAngularVelocity.x, m_pRigidBodySystem[i].vAngularVelocity.y, m_pRigidBodySystem[i].vAngularVelocity.z, 0.0) * (m_pRigidBodySystem[i].qOrientation);
+		GamePhysics::Quat tmp = GamePhysics::Quat( m_pRigidBodySystem[i].vAngularVelocity.x, m_pRigidBodySystem[i].vAngularVelocity.y, m_pRigidBodySystem[i].vAngularVelocity.z, 0.0) 
+			                                      * (m_pRigidBodySystem[i].qOrientation);
 		tmp *= (timestep * 0.5);
 		//it failed afer adding this line, changing orientation so to say
 		m_pRigidBodySystem[i].qOrientation += tmp;
 
 		//perhaps still need to normalize orientation?
 		if (m_pRigidBodySystem[i].qOrientation.norm() != 0) {
-			m_pRigidBodySystem[i].qOrientation = m_pRigidBodySystem[i].qOrientation.unit();
+			//m_pRigidBodySystem[i].qOrientation = m_pRigidBodySystem[i].qOrientation.unit();
 		}
 
 		//update the angular momentum
@@ -256,8 +285,8 @@ void RigidBodySystemSimulator::drawRigid() {
 //don't need to compute every time
 void RigidBodySystemSimulator::precomputing(RigidBody rb) {
 	
-	float  x = (1 / 12) * rb.fMass * (pow(rb.size.x,2) + pow(rb.size.z, 2));
-	float  y = (1 / 12) * rb.fMass * (pow(rb.size.z, 2) + pow(rb.size.y,2));
+	float  y = (1 / 12) * rb.fMass * (pow(rb.size.x,2) + pow(rb.size.z, 2));
+	float  x = (1 / 12) * rb.fMass * (pow(rb.size.z, 2) + pow(rb.size.y,2));
 	float  z = (1 / 12) * rb.fMass * (pow(rb.size.y,2) + pow(rb.size.x, 2));
 
 	rb.I0 = XMMatrixInverse(nullptr, XMMatrixScaling(x,y,z));
@@ -266,8 +295,10 @@ void RigidBodySystemSimulator::precomputing(RigidBody rb) {
 void RigidBodySystemSimulator::updateInertiaTensorAndAngu() {
 	for (int i = 0; i < m_pRigidBodySystem.size(); i++) {
 		//update the inverse inertia tensor
-		m_pRigidBodySystem[i].tensor =  m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix() * XMMatrixInverse(nullptr, m_pRigidBodySystem[i].I0) * XMMatrixTranspose(m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix());
-
+		//m_pRigidBodySystem[i].tensor =  m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix() * XMMatrixInverse(nullptr, m_pRigidBodySystem[i].I0) * XMMatrixTranspose(m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix());
+		m_pRigidBodySystem[i].tensor = XMMatrixTranspose(m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix()) * m_pRigidBodySystem[i].I0 * m_pRigidBodySystem[i].qOrientation.getRotMat().toDirectXMatrix();
+		
+		
 		//update the angualr velocity using I (inertia tensor)and L (angular momentum)(problem occurs here)
 		//m_pRigidBodySystem[i].vAngularVelocity = (GamePhysics::Mat4f(m_pRigidBodySystem[i].tensor) * GamePhysics::Vec3(m_pRigidBodySystem[i].angularMomentum).toDirectXVector()).toDirectXVector();
 		//m_pRigidBodySystem[i].vAngularVelocity = m_pRigidBodySystem[i].tensor * m_pRigidBodySystem[i].angularMomentum.toDirectXVector();
